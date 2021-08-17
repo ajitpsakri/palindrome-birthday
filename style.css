@@ -1,0 +1,41 @@
+
+body{
+    background-color: lightslategray;
+}
+.border{
+    border: 3px solid darkslategray;
+    width: 600px;
+    margin: auto;
+    text-align: center;
+    margin-top: 80px;
+    padding: 20px;
+    background-color: darkslategray;
+    color: white;
+    box-shadow: 0px 0px 10px black;
+    border-radius: 6px;
+}
+#loading-image{
+    width: 130px;
+    margin:auto;
+}
+
+#btn-submit-date{
+    width: 307px;
+    margin:1rem 0rem;
+    height: 2rem;
+    background-color: darkslategray;
+    color: white;
+    border-radius: 5px;
+    font-weight: bolder;
+}
+#date-input{
+    width: 300px;
+    margin:0.5rem 0rem 0rem 0rem;
+    background-color: darkslategray;
+    color: white;
+    height: 25px;
+}
+#message{
+    font-size: 17px;
+    
+}

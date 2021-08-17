@@ -142,6 +142,8 @@ const prevPlaindromeDate = dateObj => {
             break;
         date = prevDate(date)
     }
+    date = convertTwoDigit(date)
+    date = date.day + date.month + date.year;
     return [count, date]
 }
 
@@ -150,28 +152,36 @@ const btnSubmit = document.querySelector("#btn-submit-date")
 const message = document.querySelector("#message")
 const loadingSvg = document.querySelector("#loading-image")
 btnSubmit.addEventListener('click', function () {
-    //render some loading animation 
-    loadingSvg.style.display = "block"
-    message.style.display = "none"
-    setTimeout(function () {
-        //remove rendering animation
-        loadingSvg.style.display = "none"
-        message.style.display = "block"
-        let dateStr = inputEle.value;
-        if (dateStr) {
+    let dateStr = inputEle.value;
+    if (dateStr) {
+        //render some loading animation 
+        loadingSvg.style.display = "block"
+        message.style.display = "none"
+        setTimeout(function () {
+            //remove rendering animation
+            loadingSvg.style.display = "none"
+            message.style.display = "block"
+
+
             let dateObj = convertDateStringToObject(dateStr)
             let isPal = isPalindromeInAllFormats(dateObj)
             if (isPal) {
-                message.innerHTML = "Your Birthday is Palindrome"
+                message.innerHTML = "Your Birthday is Palindrome🤩"
             } else {
-                let [nextCount, nextdate] = nextPalindromeDate(dateObj)
-                let [prevCount, prevdate] = prevPlaindromeDate(dateObj)
+                let [nextCount, commingDate] = nextPalindromeDate(dateObj)
+                let [prevCount, dateGone] = prevPlaindromeDate(dateObj)
                 if (nextCount > prevCount) {
-                    message.innerHTML = `Your Birthday is not palindrome and you missed by ${prevCount}, Date = ${prevdate}`
+                    console.log(prevCount, dateGone)
+                    message.innerHTML = `Your Birthday is not palindrome 🥺 and you missed it by ${prevCount}. Nearest date is ${dateGone}`
                 } else {
-                    message.innerHTML = `Your Birthday is not palindrome and you missed by ${prevCount}, Date = ${nextdate}`
+                    console.log(nextCount, commingDate)
+                    message.innerHTML = `Your Birthday is not palindrome 🥺 and you missed it by ${nextCount}. Nearest date is ${commingDate}`
                 }
             }
-        }
-    }, 3000)
+
+        }, 4000)
+    } else {
+        message.innerHTML = "Enter your birthday"
+
+    }
 })
