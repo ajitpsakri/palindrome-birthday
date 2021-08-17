@@ -130,7 +130,7 @@ const nextPalindromeDate = dateObj => {
         date = nexDate(date)
     }
     date = convertTwoDigit(date)
-    date = date.day + date.month + date.year;
+    date = date.day + "/" + date.month + "/" + date.year;
     return [count, date]
 }
 const prevPlaindromeDate = dateObj => {
@@ -143,7 +143,7 @@ const prevPlaindromeDate = dateObj => {
         date = prevDate(date)
     }
     date = convertTwoDigit(date)
-    date = date.day + date.month + date.year;
+    date = date.day + "/" + date.month + "/" + date.year;
     return [count, date]
 }
 
@@ -151,6 +151,7 @@ const inputEle = document.querySelector("#date-input");
 const btnSubmit = document.querySelector("#btn-submit-date")
 const message = document.querySelector("#message")
 const loadingSvg = document.querySelector("#loading-image")
+
 btnSubmit.addEventListener('click', function () {
     let dateStr = inputEle.value;
     if (dateStr) {
