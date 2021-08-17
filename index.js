@@ -148,22 +148,30 @@ const prevPlaindromeDate = dateObj => {
 const inputEle = document.querySelector("#date-input");
 const btnSubmit = document.querySelector("#btn-submit-date")
 const message = document.querySelector("#message")
-
+const loadingSvg = document.querySelector("#loading-image")
 btnSubmit.addEventListener('click', function () {
-    let dateStr = inputEle.value;
-    if (dateStr) {
-        let dateObj = convertDateStringToObject(dateStr)
-        let isPal = isPalindromeInAllFormats(dateObj)
-        if (isPal) {
-            message.innerHTML = "Your Birthday is Palindrome"
-        } else {
-            let [nextCount, nextdate] = nextPalindromeDate(dateObj)
-            let [prevCount, prevdate] = prevPlaindromeDate(dateObj)
-            if (nextCount > prevCount) {
-                message.innerHTML = `Your Birthday is not palindrome and you missed by ${prevCount}, Date = ${prevdate}`
+    //render some loading animation 
+    loadingSvg.style.display = "block"
+    message.style.display = "none"
+    setTimeout(function () {
+        //remove rendering animation
+        loadingSvg.style.display = "none"
+        message.style.display = "block"
+        let dateStr = inputEle.value;
+        if (dateStr) {
+            let dateObj = convertDateStringToObject(dateStr)
+            let isPal = isPalindromeInAllFormats(dateObj)
+            if (isPal) {
+                message.innerHTML = "Your Birthday is Palindrome"
             } else {
-                message.innerHTML = `Your Birthday is not palindrome and you missed by ${prevCount}, Date = ${nextdate}`
+                let [nextCount, nextdate] = nextPalindromeDate(dateObj)
+                let [prevCount, prevdate] = prevPlaindromeDate(dateObj)
+                if (nextCount > prevCount) {
+                    message.innerHTML = `Your Birthday is not palindrome and you missed by ${prevCount}, Date = ${prevdate}`
+                } else {
+                    message.innerHTML = `Your Birthday is not palindrome and you missed by ${prevCount}, Date = ${nextdate}`
+                }
             }
         }
-    }
+    }, 3000)
 })
